@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import './css/App.css';
+import React from 'react';
+import Div from './Div';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedDiv: 0
+    }
+    this.over = this.over.bind(this);
+    this.drop = this.drop.bind(this);
+    this.setClickedDiv = this.setClickedDiv.bind(this);
+  }
+
+
+  setClickedDiv(id) {
+    this.setState({ selectedDiv: id });
+  }
+  over(e) {
+  }
+  drop(e) {
+
+  }
+
+
+  render() {
+    // console.log(this.state.selectedDiv);
+    return (
+      <div className="App" onDragOver={this.over} onDrop={this.drop}>
+        <Div id={1} color='teal' setClickedDiv={this.setClickedDiv} selectedDiv={this.state.selectedDiv}></Div>
+        <Div id={2} color='orange' setClickedDiv={this.setClickedDiv} selectedDiv={this.state.selectedDiv}></Div>
+        <Div id={3} color='black' setClickedDiv={this.setClickedDiv} selectedDiv={this.state.selectedDiv}></Div>
+      </div>
+    );
+  }
 }
 
 export default App;
